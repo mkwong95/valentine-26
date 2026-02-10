@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yay! I Knew It!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffeef2;
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+            max-width: 90%;
+            animation: popIn 0.5s ease-out;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-family: 'Pacifico', cursive;
+        }
+
+        p {
+            font-size: 2rem;
+            color: #ff758f;
+            margin-bottom: 30px;
+        }
+
+        .gif-container img {
+            width: 250px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hearts" id="heartContainer"></div>
+
+    <div class="container">
+        <h1>I knew it!! ❤️</h1>
+        <p>I love you so much!</p>
+        <div class="gif-container">
+            <img src="https://media.tenor.com/9712e12338c9d2ec5303964996395358/tenor.gif" alt="Happy Kissing Rabbits">
+        </div>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.transition = 'all 3s linear';
+            heart.style.opacity = '1';
+            
+            document.getElementById('heartContainer').appendChild(heart);
+
+            setTimeout(() => {
+                heart.style.top = '-10vh';
+                heart.style.opacity = '0';
+                heart.style.transform = `translateX(${(Math.random() - 0.5) * 100}px)`;
+            }, 100);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 3100);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
